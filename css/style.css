@@ -90,3 +90,63 @@ footer {
   text-align: center;
   padding: 15px;
 }
+
+.admin-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.admin-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.admin-card {
+  background: white;
+  width: 220px;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.admin-card h3 {
+  margin-top: 0;
+  color: #0a3d62;
+}
+
+.login-container {
+  width: 350px;
+  margin: 60px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.login-container input {
+  width: 90%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.login-container button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #0a3d62;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.login-note {
+  margin-top: 15px;
+}
+
+.navbar {
+  background-color: #0a3d62;
+}
+
+

@@ -1,25 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Admin – Lumara Resort</title>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard – Lumara Resort</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <header class="navbar">
-      <div class="logo">Admin Panel</div>
+      <div class="logo">Lumara Resort – Admin</div>
+      <nav>
+        <a href="admin.html">Dashboard</a>
+        <a href="#">Manage Rooms</a>
+        <a href="#">View Bookings</a>
+        <a href="index.html">Logout</a>
+      </nav>
     </header>
 
-    <section class="highlights">
+    <section class="admin-container">
       <h2>Admin Dashboard</h2>
-      <ul>
-        <li>Manage Rooms</li>
-        <li>View Bookings</li>
-        <li>Update Prices</li>
-      </ul>
+
+      <div class="admin-cards">
+        <div class="admin-card">
+          <h3>Manage Rooms</h3>
+          <p>Add, update, or remove rooms</p>
+        </div>
+
+        <div class="admin-card">
+          <h3>View Bookings</h3>
+          <p>Check customer bookings</p>
+        </div>
+
+        <div class="admin-card">
+          <h3>Update Prices</h3>
+          <p>Modify room prices</p>
+        </div>
+      </div>
     </section>
 
     <footer>
-      <p>Admin – Lumara Resort</p>
+      <p>Admin Panel – Lumara Resort</p>
     </footer>
   </body>
 </html>
