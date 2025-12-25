@@ -3,17 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>Lumara Resort</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="<%= request.getContextPath() %>/css/style.css"
+    />
   </head>
   <body>
     <header class="navbar">
       <div class="logo">Lumara Resort</div>
       <nav>
-        <a href="index.html">Home</a>
-        <a href="rooms.html">Rooms</a>
+        <a href="index.jsp">Home</a>
+        <a href="rooms.jsp">Rooms</a>
         <a href="activities.html">Activities</a>
-        <a href="booking.html">Book Now</a>
-        <a href="admin.html">Admin</a>
+        <a href="booking.jsp">Book Now</a>
+        <a href="admin.jsp">Admin</a>
       </nav>
     </header>
 

@@ -3,16 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <title>Admin Dashboard – Lumara Resort</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="<%= request.getContextPath() %>/css/style.css"
+    />
   </head>
   <body>
     <header class="navbar">
       <div class="logo">Lumara Resort – Admin</div>
       <nav>
-        <a href="admin.html">Dashboard</a>
+        <a href="admin.jsp">Dashboard</a>
         <a href="#">Manage Rooms</a>
         <a href="#">View Bookings</a>
-        <a href="index.html">Logout</a>
+        <a href="index.jsp">Logout</a>
       </nav>
     </header>
 

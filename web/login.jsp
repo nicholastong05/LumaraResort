@@ -3,15 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <title>User Login – Lumara Resort</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="<%= request.getContextPath() %>/css/style.css"
+    />
   </head>
   <body>
     <header class="navbar">
       <div class="logo">Lumara Resort</div>
       <nav>
-        <a href="index.html">Home</a>
-        <a href="rooms.html">Rooms</a>
-        <a href="booking.html">Book Now</a>
+        <a href="index.jsp">Home</a>
+        <a href="rooms.jsp">Rooms</a>
+        <a href="booking.jsp">Book Now</a>
       </nav>
     </header>
 

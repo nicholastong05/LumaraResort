@@ -2,7 +2,12 @@
 <html>
   <head>
     <title>Admin Login – Lumara Resort</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="<
+    <link
+      rel="stylesheet"
+      href="<%= request.getContextPath() %>/css/style.css"
+    />
+    %= request.getContextPath() %>/css/style.css">
   </head>
   <body>
     <header class="navbar">
