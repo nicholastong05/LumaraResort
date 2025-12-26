@@ -1,20 +1,18 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Activities – Lumara Resort</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="<%= request.getContextPath() %>/css/style.css"
+    />
   </head>
+
   <body>
-    <header class="navbar">
-      <div class="logo">Lumara Resort</div>
-      <nav>
-        <a href="index.jsp">Home</a>
-        <a href="rooms.jsp">Rooms</a>
-        <a href="activities.html">Activities</a>
-        <a href="booking.jsp">Book Now</a>
-      </nav>
-    </header>
+    <!-- Shared Navbar -->
+    <jsp:include page="navbar.jsp" />
 
     <section class="highlights">
       <h2>Resort Activities</h2>

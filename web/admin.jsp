@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <%
+String role = (String) session.getAttribute("role"); if (!"admin".equals(role))
+{ response.sendRedirect("login.jsp"); return; } %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,15 +12,7 @@
     />
   </head>
   <body>
-    <header class="navbar">
-      <div class="logo">Lumara Resort – Admin</div>
-      <nav>
-        <a href="admin.jsp">Dashboard</a>
-        <a href="#">Manage Rooms</a>
-        <a href="#">View Bookings</a>
-        <a href="index.jsp">Logout</a>
-      </nav>
-    </header>
+    <jsp:include page="navbar.jsp" />
 
     <section class="admin-container">
       <h2>Admin Dashboard</h2>

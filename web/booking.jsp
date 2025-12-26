@@ -9,14 +9,7 @@
     />
   </head>
   <body>
-    <header class="navbar">
-      <div class="logo">Lumara Resort</div>
-      <nav>
-        <a href="index.jsp">Home</a>
-        <a href="rooms.jsp">Rooms</a>
-        <a href="activities.html">Activities</a>
-      </nav>
-    </header>
+    <jsp:include page="navbar.jsp" />
 
     <section class="highlights">
       <h2>Book Your Stay</h2>

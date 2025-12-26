@@ -1,39 +1,44 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>User Login – Lumara Resort</title>
+    <title>Log in – Lumara Resort</title>
     <link
       rel="stylesheet"
       href="<%= request.getContextPath() %>/css/style.css"
     />
   </head>
+
   <body>
-    <header class="navbar">
-      <div class="logo">Lumara Resort</div>
-      <nav>
-        <a href="index.jsp">Home</a>
-        <a href="rooms.jsp">Rooms</a>
-        <a href="booking.jsp">Book Now</a>
-      </nav>
-    </header>
+    <jsp:include page="navbar.jsp" />
 
     <section class="login-container">
-      <h2>User Login</h2>
+      <h2>Log in</h2>
 
-      <form>
+      <!-- LOGIN FORM -->
+      <form method="post" action="<%= request.getContextPath() %>/login">
         <p>
-          Email:<br />
-          <input type="email" required />
+          Username:<br />
+          <input type="text" name="username" required />
         </p>
+
         <p>
           Password:<br />
-          <input type="password" required />
+          <input type="password" name="password" required />
         </p>
-        <button type="submit">Login</button>
+
+        <button type="submit">Log in</button>
       </form>
 
-      <p class="login-note">Admin? <a href="admin-login.html">Login here</a></p>
+      <!-- LOGIN ERROR MESSAGE -->
+      <% if (request.getParameter("error") != null) { %>
+      <p style="color: red">Invalid username or password</p>
+      <% } %>
+
+      <p class="login-note">
+        Same login for <strong>users</strong> and <strong>admins</strong>
+      </p>
     </section>
 
     <footer>

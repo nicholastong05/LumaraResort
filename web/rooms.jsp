@@ -13,15 +13,7 @@
   </head>
 
   <body>
-    <header class="navbar">
-      <div class="logo">Lumara Resort</div>
-      <nav>
-        <a href="<%= request.getContextPath() %>/index.jsp">Home</a>
-        <a href="<%= request.getContextPath() %>/rooms.jsp">Rooms</a>
-        <a href="<%= request.getContextPath() %>/activities.html">Activities</a>
-        <a href="<%= request.getContextPath() %>/booking.jsp">Book Now</a>
-      </nav>
-    </header>
+    <jsp:include page="navbar.jsp" />
 
     <section class="highlights">
       <h2>Our Rooms</h2>

@@ -9,20 +9,11 @@
     />
   </head>
   <body>
-    <header class="navbar">
-      <div class="logo">Lumara Resort</div>
-      <nav>
-        <a href="index.jsp">Home</a>
-        <a href="rooms.jsp">Rooms</a>
-        <a href="activities.html">Activities</a>
-        <a href="booking.jsp">Book Now</a>
-        <a href="admin.jsp">Admin</a>
-      </nav>
-    </header>
+    <jsp:include page="navbar.jsp" />
 
     <section class="hero">
       <h1>Your Tropical Escape</h1>
-      <p>Luxury • Nature • Comfort</p>
+      <p>Luxury. Nature. Comfort.</p>
     </section>
 
     <section class="highlights">
