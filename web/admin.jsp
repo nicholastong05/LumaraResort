@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <%
 String role = (String) session.getAttribute("role"); if (!"admin".equals(role))
 { response.sendRedirect("login.jsp"); return; } %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
