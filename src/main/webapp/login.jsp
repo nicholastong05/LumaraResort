@@ -1,13 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <title>Log in – Lumara Resort</title>
-    <link
-      rel="stylesheet"
-      href="<%= request.getContextPath() %>/css/style.css"
-    />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
   </head>
 
   <body>
@@ -31,18 +29,28 @@
         <button type="submit">Log in</button>
       </form>
 
-      <!-- LOGIN ERROR MESSAGE -->
-      <% if (request.getParameter("error") != null) { %>
-      <p style="color: red">Invalid username or password</p>
-      <% } %>
+      <!-- REGISTER SUCCESS MESSAGE -->
+      <% if (request.getParameter("registered") !=null) { %>
+        <p style="color: green">Registration successful! Please log in.</p>
+        <% } %>
 
-      <p class="login-note">
-        Same login for <strong>users</strong> and <strong>admins</strong>
-      </p>
+          <!-- LOGIN ERROR MESSAGE -->
+          <% if (request.getParameter("error") !=null) { %>
+            <p style="color: red">Invalid username or password</p>
+            <% } %>
+
+              <p class="login-note">
+                Same login for <strong>users</strong> and <strong>admins</strong>
+              </p>
+
+              <p class="login-note">
+                Don't have an account? <a href="register.jsp">Register here</a>
+              </p>
     </section>
 
     <footer>
       <p>© 2025 Lumara Resort</p>
     </footer>
   </body>
-</html>
+
+  </html>
