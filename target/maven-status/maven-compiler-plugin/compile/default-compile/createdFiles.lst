@@ -1,2 +1,4 @@
-com\lumara\servlet\LogoutServlet.class
 com\lumara\servlet\LoginServlet.class
+com\lumara\util\DatabaseInitializer.class
+com\lumara\util\DBConnection.class
+com\lumara\servlet\LogoutServlet.class

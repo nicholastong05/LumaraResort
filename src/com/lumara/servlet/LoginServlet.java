@@ -20,19 +20,31 @@ public class LoginServlet extends HttpServlet {
 
     HttpSession session = request.getSession();
 
-    // TEMP LOGIC (later replace with DB)
-    if ("admin".equals(username) && "admin123".equals(password)) {
-      session.setAttribute("role", "admin");
-      session.setAttribute("username", username);
-      response.sendRedirect("admin.jsp");
+    try (java.sql.Connection conn = com.lumara.util.DBConnection.getConnection()) {
+      String sql = "SELECT role FROM users WHERE username = ? AND password = ?";
+      try (java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, username);
+        pstmt.setString(2, password);
 
-    } else if ("user".equals(username) && "user123".equals(password)) {
-      session.setAttribute("role", "user");
-      session.setAttribute("username", username);
-      response.sendRedirect("index.jsp");
+        try (java.sql.ResultSet rs = pstmt.executeQuery()) {
+          if (rs.next()) {
+            String role = rs.getString("role");
+            session.setAttribute("role", role);
+            session.setAttribute("username", username);
 
-    } else {
-      response.sendRedirect("login.jsp?error=1");
+            if ("admin".equals(role)) {
+              response.sendRedirect("admin.jsp");
+            } else {
+              response.sendRedirect("index.jsp");
+            }
+          } else {
+            response.sendRedirect("login.jsp?error=1");
+          }
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      response.sendRedirect("login.jsp?error=db");
     }
   }
 }

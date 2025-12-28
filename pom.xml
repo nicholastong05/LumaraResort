@@ -40,11 +40,11 @@
             <version>1.2</version>
         </dependency>
 
-        <!-- MySQL Connector -->
+        <!-- PostgreSQL Connector (NeonDB) -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.2</version>
         </dependency>
     </dependencies>
 
@@ -55,9 +55,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
-                <configuration>
-                    <warSourceDirectory>web</warSourceDirectory>
-                </configuration>
             </plugin>
 
              <!-- Jetty maven plugin -->
