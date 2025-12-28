@@ -59,7 +59,21 @@
                     <warSourceDirectory>web</warSourceDirectory>
                 </configuration>
             </plugin>
+
+             <!-- Jetty maven plugin -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>10.0.18</version>
+                <configuration>
+                    <httpConnector>
+                        <port>8080</port>
+                    </httpConnector>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-</project></content>
-<parameter name="filePath">c:\Users\nicho\usm\year 2 sem 1\CAT201\LumaraResort\pom.xml
+</project>
