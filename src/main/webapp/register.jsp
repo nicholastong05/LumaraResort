@@ -26,13 +26,7 @@
                     <input type="password" name="password" required />
                 </p>
 
-                <p>
-                    Role:<br />
-                    <select name="role">
-                        <option value="user">USER</option>
-                        <option value="admin">ADMIN</option>
-                    </select>
-                </p>
+
 
                 <button type="submit">Sign Up</button>
             </form>
