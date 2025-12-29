@@ -1,49 +1,127 @@
+/* Universal box-sizing fix */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f8fb;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll */
 }
+
+/* ========================================
+   ENHANCED NAVBAR
+   ======================================== */
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0a3d62;
-  padding: 15px 30px;
+  background: linear-gradient(135deg, #0a3d62 0%, #1e5a7a 100%);
+  padding: 20px 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo {
   color: white;
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #fff 0%, #a8d8ea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .navbar a {
   color: white;
-  margin-left: 20px;
+  padding: 10px 20px;
   text-decoration: none;
+  font-weight: 500;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-size: 15px;
 }
 
 .navbar a:hover {
-  text-decoration: underline;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
+
+.navbar span {
+  color: white;
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+/* ========================================
+   ENHANCED HERO SECTION
+   ======================================== */
 
 .hero {
   text-align: center;
-  padding: 100px 20px;
-  background-image: url("../images/hero.jpg");
+  padding: 150px 20px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/hero.jpg");
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   color: white;
+  position: relative;
 }
 
 .hero h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
+  font-size: 64px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+  animation: fadeInDown 1s ease;
 }
 
 .hero p {
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease 0.3s both;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .highlights {
@@ -62,7 +140,7 @@ body {
   padding: 20px;
   width: 200px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card h3 {
@@ -84,11 +162,23 @@ body {
 
 
 
+/* ========================================
+   ENHANCED FOOTER
+   ======================================== */
+
 footer {
-  background-color: #0a3d62;
+  background: linear-gradient(135deg, #0a3d62 0%, #1e5a7a 100%);
   color: white;
   text-align: center;
-  padding: 15px;
+  padding: 40px 20px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+}
+
+footer p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 
 .admin-container {
@@ -108,7 +198,7 @@ footer {
   width: 220px;
   padding: 25px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .admin-card h3 {
@@ -122,7 +212,7 @@ footer {
   background: white;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 
@@ -150,3 +240,470 @@ footer {
 }
 
 
+/* ========================================
+   ACTIVITIES SHOWCASE SECTION
+   ======================================== */
+
+.activities-showcase {
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  text-align: center;
+}
+
+.activities-showcase h2 {
+  font-size: 42px;
+  color: #0a3d62;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 50px;
+  font-style: italic;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.activity-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.activity-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+.activity-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.activity-card:hover img {
+  transform: scale(1.1);
+}
+
+.activity-info {
+  padding: 25px;
+  text-align: left;
+}
+
+.activity-info h3 {
+  font-size: 22px;
+  color: #0a3d62;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.activity-info p {
+  font-size: 15px;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+/* ========================================
+   ACTIVITIES PAGE SPECIFIC STYLES
+   ======================================== */
+
+.activities-hero {
+  text-align: center;
+  padding: 100px 20px 80px;
+  background: linear-gradient(135deg, #0a3d62 0%, #1e5a7a 100%);
+  color: white;
+}
+
+.activities-hero h1 {
+  font-size: 48px;
+  margin: 0 0 15px 0;
+  font-weight: 700;
+}
+
+.activities-hero p {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.activity-price {
+  font-size: 28px;
+  color: #667eea;
+  font-weight: 700;
+  margin: 15px 0;
+}
+
+.activity-price span {
+  font-size: 16px;
+  color: #999;
+  font-weight: 400;
+}
+
+.btn-activity {
+  display: inline-block;
+  padding: 12px 30px;
+  background: #0a3d62;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-activity:hover {
+  background: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* ========================================
+   ROOM SELECTOR SECTION
+   ======================================== */
+
+.room-selector {
+  padding: 80px 40px;
+  background: white;
+  text-align: center;
+}
+
+.room-selector h2 {
+  font-size: 42px;
+  color: #0a3d62;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.room-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.room-tab {
+  padding: 14px 32px;
+  background: #f0f0f0;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.room-tab:hover {
+  background: #e0e0e0;
+  color: #0a3d62;
+}
+
+.room-tab.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: #667eea;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.room-contents {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 400px;
+}
+
+.room-content {
+  display: none;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.room-content.active {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.room-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.room-details {
+  text-align: left;
+  padding: 20px;
+}
+
+.room-details h3 {
+  font-size: 32px;
+  color: #0a3d62;
+  margin: 0 0 15px 0;
+  font-weight: 700;
+}
+
+.room-price {
+  font-size: 36px;
+  color: #667eea;
+  font-weight: 700;
+  margin: 0 0 25px 0;
+}
+
+.room-price span {
+  font-size: 18px;
+  color: #999;
+  font-weight: 400;
+}
+
+.room-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+.room-features li {
+  padding: 10px 0;
+  font-size: 16px;
+  color: #555;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+  padding-left: 25px;
+}
+
+.room-features li:before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 14px 35px;
+  background: #0a3d62;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+
+/* ========================================
+   FAQ SECTION
+   ======================================== */
+
+.faq-section {
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  text-align: center;
+}
+
+.faq-section h2 {
+  font-size: 42px;
+  color: white;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.faq-section .section-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 50px;
+}
+
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-2px);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s ease;
+}
+
+.faq-question:hover {
+  background: #f8f9fa;
+}
+
+.faq-question h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #0a3d62;
+  font-weight: 600;
+  text-align: left;
+  flex: 1;
+}
+
+.faq-icon {
+  font-size: 28px;
+  color: #667eea;
+  font-weight: 300;
+  transition: transform 0.3s ease;
+  margin-left: 20px;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  background: #f8f9fa;
+}
+
+.faq-answer p {
+  margin: 0;
+  padding: 0 30px 25px 30px;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.room-activities-header {
+  font-size: 18px;
+  color: #0a3d62;
+  font-weight: 700;
+  margin: 20px 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.room-activities {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.room-activities li {
+  background: #f0f7ff;
+  color: #0a3d62;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #d0e7ff;
+  transition: all 0.3s ease;
+}
+
+.room-activities li strong {
+  color: #764ba2;
+}
+
+.room-activities li:hover {
+  background: #e0f0ff;
+  transform: translateY(-2px);
+}
+
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .room-content.active {
+    grid-template-columns: 1fr;
+  }
+
+  .room-tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .room-tab {
+    width: 100%;
+  }
+
+  .activities-showcase h2,
+  .room-selector h2,
+  .faq-section h2 {
+    font-size: 32px;
+  }
+}
