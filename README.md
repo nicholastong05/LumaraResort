@@ -8,7 +8,7 @@ This project is configured to run with the Jetty Maven Plugin.
     ```bash
     mvn jetty:run
     ```
-3.  **Access**: Open your browser to [http://localhost:8080/](http://localhost:8080/).
+3.  **Access**: Open your browser to [http://localhost:8081/](http://localhost:8081/).
 
 ## Deployment
 To build a WAR file for production deployment (e.g., Tomcat):
