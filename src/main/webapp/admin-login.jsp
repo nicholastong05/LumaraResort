@@ -1,13 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+  <html>
+
   <head>
     <title>Admin Login – Lumara Resort</title>
-    <link
-      rel="stylesheet"
-      href="<%= request.getContextPath() %>/css/style.css"
-    />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
   </head>
+
   <body>
     <jsp:include page="navbar.jsp" />
 
@@ -29,5 +28,7 @@
         <button type="submit">Login</button>
       </form>
     </section>
+    <jsp:include page="footer.jsp" />
   </body>
-</html>
+
+  </html>

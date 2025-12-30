@@ -4,7 +4,7 @@
 
   <head>
     <title>Booking – Lumara Resort</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
   </head>
 
   <body>
@@ -58,9 +58,7 @@
             </form>
     </div>
 
-    <footer>
-      <p>© 2025 Lumara Resort</p>
-    </footer>
+    <jsp:include page="footer.jsp" />
     <script src="js/validation.js"></script>
   </body>
 

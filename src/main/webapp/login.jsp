@@ -4,53 +4,57 @@
 
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log in – Lumara Resort</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
   </head>
 
   <body>
     <jsp:include page="navbar.jsp" />
 
-    <section class="login-container">
-      <h2>Log in</h2>
+    <div class="login-page-bg">
+      <div class="login-card">
+        <h2>Welcome Back</h2>
 
-      <!-- LOGIN FORM -->
-      <form method="post" action="<%= request.getContextPath() %>/login">
-        <p>
-          Username:<br />
-          <input type="text" name="username" required />
-        </p>
+        <!-- FEEDBACK MESSAGES -->
+        <% if (request.getParameter("registered") !=null) { %>
+          <div class="feedback-message feedback-success">
+            Registration successful! Please log in.
+          </div>
+          <% } %>
 
-        <p>
-          Password:<br />
-          <input type="password" name="password" required />
-        </p>
+            <% if (request.getParameter("error") !=null) { %>
+              <div class="feedback-message feedback-error">
+                Invalid username or password
+              </div>
+              <% } %>
 
-        <button type="submit">Log in</button>
-      </form>
+                <!-- LOGIN FORM -->
+                <form method="post" action="<%= request.getContextPath() %>/login">
+                  <div class="login-form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required />
+                  </div>
 
-      <!-- REGISTER SUCCESS MESSAGE -->
-      <% if (request.getParameter("registered") !=null) { %>
-        <p style="color: green">Registration successful! Please log in.</p>
-        <% } %>
+                  <div class="login-form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required />
+                  </div>
 
-          <!-- LOGIN ERROR MESSAGE -->
-          <% if (request.getParameter("error") !=null) { %>
-            <p style="color: red">Invalid username or password</p>
-            <% } %>
+                  <button type="submit" class="btn-login">Log in</button>
+                </form>
 
-              <p class="login-note">
-                Same login for <strong>users</strong> and <strong>admins</strong>
-              </p>
+                <div class="login-links">
+                  <p>Don't have an account? <a href="register.jsp">Register here</a></p>
+                </div>
 
-              <p class="login-note">
-                Don't have an account? <a href="register.jsp">Register here</a>
-              </p>
-    </section>
+                <div style="margin-top: 15px; font-size: 13px; color: #888;">
+                  (Same login for users and admins)
+                </div>
+      </div>
+    </div>
 
-    <footer>
-      <p>© 2025 Lumara Resort</p>
-    </footer>
+    <jsp:include page="footer.jsp" />
   </body>
 
   </html>

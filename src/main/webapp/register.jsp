@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>Register – Lumara Resort</title>
-        <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
     </head>
 
     <body>
@@ -41,9 +41,7 @@
                     </p>
         </section>
 
-        <footer>
-            <p>© 2025 Lumara Resort</p>
-        </footer>
+        <jsp:include page="footer.jsp" />
     </body>
 
     </html>

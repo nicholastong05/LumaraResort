@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lumara Resort</title>
-  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
 </head>
 
 <body>
@@ -83,7 +83,7 @@
             <li>Spa and Wellness</li>
             <li>Beachfront Dining</li>
           </ul>
-          <a href="<%= request.getContextPath() %>/booking.jsp" class="btn-secondary">Book Now</a>
+          <a href="<%= request.getContextPath() %>/rooms.jsp#standard" class="btn-secondary">Room Information</a>
         </div>
       </div>
 
@@ -107,7 +107,7 @@
             <li><strong>Night Diving</strong></li>
             <li><strong>Scuba Diving</strong></li>
           </ul>
-          <a href="<%= request.getContextPath() %>/booking.jsp" class="btn-secondary">Book Now</a>
+          <a href="<%= request.getContextPath() %>/rooms.jsp#deluxe" class="btn-secondary">Room Information</a>
         </div>
       </div>
 
@@ -131,7 +131,7 @@
             <li><strong>ATV Tours</strong></li>
             <li><strong>Sunset Cruise</strong></li>
           </ul>
-          <a href="<%= request.getContextPath() %>/booking.jsp" class="btn-secondary">Book Now</a>
+          <a href="<%= request.getContextPath() %>/rooms.jsp#family" class="btn-secondary">Room Information</a>
         </div>
       </div>
     </div>
@@ -215,9 +215,7 @@
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 Lumara Resort. All rights reserved.</p>
-  </footer>
+  <jsp:include page="footer.jsp" />
 
   <script src="<%= request.getContextPath() %>/js/main.js"></script>
 </body>

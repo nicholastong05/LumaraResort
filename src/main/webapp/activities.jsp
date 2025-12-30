@@ -6,7 +6,7 @@
     <title>Activities – Lumara Resort</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
   </head>
 
   <body>
@@ -116,9 +116,7 @@
       </div>
     </section>
 
-    <footer>
-      <p>© 2025 Lumara Resort</p>
-    </footer>
+    <jsp:include page="footer.jsp" />
 
     <script src="<%= request.getContextPath() %>/js/main.js"></script>
   </body>
