@@ -25,6 +25,17 @@ public class DatabaseInitializer implements ServletContextListener {
                 try (Statement stmt = conn.createStatement()) {
                     stmt.execute(createTableSQL);
                     System.out.println("Users table checked/created.");
+
+                    // Create bookings table if not exists
+                    String createBookingsSQL = "CREATE TABLE IF NOT EXISTS bookings (" +
+                            "id SERIAL PRIMARY KEY, " +
+                            "name VARCHAR(255) NOT NULL, " +
+                            "room_type VARCHAR(100) NOT NULL, " +
+                            "check_in DATE NOT NULL, " +
+                            "check_out DATE NOT NULL, " +
+                            "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
+                    stmt.execute(createBookingsSQL);
+                    System.out.println("Bookings table checked/created.");
                 }
 
                 // Insert default users if not exist

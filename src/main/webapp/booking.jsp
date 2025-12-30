@@ -1,47 +1,67 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+  <html>
+
   <head>
     <title>Booking – Lumara Resort</title>
-    <link
-      rel="stylesheet"
-      href="<%= request.getContextPath() %>/css/style.css"
-    />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
   </head>
+
   <body>
     <jsp:include page="navbar.jsp" />
 
-    <section class="highlights">
-      <h2>Book Your Stay</h2>
+    <header class="booking-hero">
+      <h1>Book Your Stay</h1>
+      <p>Luxury and comfort await you at Lumara Resort</p>
+    </header>
 
-      <form onsubmit="return validateBooking()">
-        <p>
-          Name:<br />
-          <input type="text" required />
-        </p>
-        <p>
-          Room Type:<br />
-          <select>
-            <option>Standard</option>
-            <option>Deluxe</option>
-            <option>Family Suite</option>
-          </select>
-        </p>
-        <p>
-          Check-in Date:<br />
-          <input type="date" required />
-        </p>
-        <p>
-          Check-out Date:<br />
-          <input type="date" required />
-        </p>
-        <button type="submit">Submit Booking</button>
-      </form>
-    </section>
+    <div class="booking-container">
+      <% String success=request.getParameter("success"); String error=request.getParameter("error"); if
+        ("true".equals(success)) { %>
+        <div
+          style="background: #d4edda; color: #155724; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center; border: 1px solid #c3e6cb;">
+          Booking confirmed! We look forward to see you.
+        </div>
+        <% } else if (error !=null) { %>
+          <div
+            style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center; border: 1px solid #f5c6cb;">
+            Something went wrong. <%= "db_error" .equals(error) ? "Database error." : "Please check your details." %>
+          </div>
+          <% } %>
+
+            <form class="booking-form" action="<%= request.getContextPath() %>/book" method="POST">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="room-type">Room Type</label>
+                <select id="room-type" name="room_type">
+                  <option value="Standard">Standard</option>
+                  <option value="Deluxe">Deluxe</option>
+                  <option value="Family Suite">Family Suite</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="check-in">Check-in Date</label>
+                <input type="date" id="check-in" name="check_in" required />
+              </div>
+
+              <div class="form-group">
+                <label for="check-out">Check-out Date</label>
+                <input type="date" id="check-out" name="check_out" required />
+              </div>
+
+              <button type="submit" class="btn-booking">Confirm Booking</button>
+            </form>
+    </div>
 
     <footer>
       <p>© 2025 Lumara Resort</p>
     </footer>
     <script src="js/validation.js"></script>
   </body>
-</html>
+
+  </html>
