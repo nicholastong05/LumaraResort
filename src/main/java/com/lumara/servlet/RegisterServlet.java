@@ -19,7 +19,7 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String role = request.getParameter("role");
+        String role = "user";  
 
         if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
             response.sendRedirect("register.jsp?error=invalid");
