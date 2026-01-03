@@ -23,9 +23,10 @@
           </div>
           <% } %>
 
-            <% if (request.getParameter("error") !=null) { %>
+            <% String error=request.getParameter("error"); if (error !=null) { %>
               <div class="feedback-message feedback-error">
-                Invalid username or password
+                <%= "login_required" .equals(error) ? "Please log in before booking." : "Invalid username or password"
+                  %>
               </div>
               <% } %>
 

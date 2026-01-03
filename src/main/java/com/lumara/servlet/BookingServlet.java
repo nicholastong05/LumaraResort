@@ -21,12 +21,17 @@ public class BookingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        if (request.getSession().getAttribute("username") == null) {
+            response.sendRedirect("login.jsp?error=login_required");
+            return;
+        }
+
         String name = request.getParameter("name");
         String roomType = request.getParameter("room_type");
         String checkInStr = request.getParameter("check_in");
         String checkOutStr = request.getParameter("check_out");
 
-        //Basic validation
+        // Basic validation
         if (name == null || name.trim().isEmpty()
                 || checkInStr == null || checkOutStr == null) {
             response.sendRedirect("booking.jsp?error=missing_fields");
@@ -34,7 +39,7 @@ public class BookingServlet extends HttpServlet {
         }
 
         try {
-            //Parse dates after validation
+            // Parse dates after validation
             LocalDate checkIn = LocalDate.parse(checkInStr);
             LocalDate checkOut = LocalDate.parse(checkOutStr);
 
@@ -45,7 +50,7 @@ public class BookingServlet extends HttpServlet {
                 return;
             }
 
-            //Simple pricing logic (Phase 1)
+            // Simple pricing logic (Phase 1)
             double pricePerNight;
             switch (roomType) {
                 case "Deluxe":
@@ -63,8 +68,7 @@ public class BookingServlet extends HttpServlet {
             try (Connection conn = com.lumara.util.DBConnection.getConnection()) {
 
                 String sql = "INSERT INTO bookings (name, room_type, check_in, check_out) VALUES (?, ?, ?, ?)";
-                try (PreparedStatement pstmt =
-                             conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
                     pstmt.setString(1, name);
                     pstmt.setString(2, roomType);
@@ -73,14 +77,14 @@ public class BookingServlet extends HttpServlet {
 
                     pstmt.executeUpdate();
 
-                    //Retrieve generated booking ID
+                    // Retrieve generated booking ID
                     int bookingId = -1;
                     ResultSet rs = pstmt.getGeneratedKeys();
                     if (rs.next()) {
                         bookingId = rs.getInt(1);
                     }
 
-                    //Pass data to payment page
+                    // Pass data to payment page
                     request.setAttribute("bookingId", bookingId);
                     request.setAttribute("name", name);
                     request.setAttribute("roomType", roomType);
@@ -89,9 +93,9 @@ public class BookingServlet extends HttpServlet {
                     request.setAttribute("nights", nights);
                     request.setAttribute("totalAmount", totalAmount);
 
-                    //Forward to payment page
+                    // Forward to payment page
                     request.getRequestDispatcher("payment.jsp")
-                           .forward(request, response);
+                            .forward(request, response);
                 }
             }
 

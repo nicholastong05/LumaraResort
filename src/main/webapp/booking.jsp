@@ -1,65 +1,66 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-  <!DOCTYPE html>
-  <html>
+  <% if (session.getAttribute("username")==null) { response.sendRedirect("login.jsp?error=login_required"); return; } %>
+    <!DOCTYPE html>
+    <html>
 
-  <head>
-    <title>Booking – Lumara Resort</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
-  </head>
+    <head>
+      <title>Booking – Lumara Resort</title>
+      <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
+    </head>
 
-  <body>
-    <jsp:include page="navbar.jsp" />
+    <body>
+      <jsp:include page="navbar.jsp" />
 
-    <header class="booking-hero">
-      <h1>Book Your Stay</h1>
-      <p>Luxury and comfort await you at Lumara Resort</p>
-    </header>
+      <header class="booking-hero">
+        <h1>Book Your Stay</h1>
+        <p>Luxury and comfort await you at Lumara Resort</p>
+      </header>
 
-    <div class="booking-container">
-      <% String success=request.getParameter("success"); String error=request.getParameter("error"); if
-        ("true".equals(success)) { %>
-        <div
-          style="background: #d4edda; color: #155724; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center; border: 1px solid #c3e6cb;">
-          Booking confirmed! We look forward to see you.
-        </div>
-        <% } else if (error !=null) { %>
+      <div class="booking-container">
+        <% String success=request.getParameter("success"); String error=request.getParameter("error"); if
+          ("true".equals(success)) { %>
           <div
-            style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center; border: 1px solid #f5c6cb;">
-            Something went wrong. <%= "db_error" .equals(error) ? "Database error." : "Please check your details." %>
+            style="background: #d4edda; color: #155724; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center; border: 1px solid #c3e6cb;">
+            Booking confirmed! We look forward to see you.
           </div>
-          <% } %>
+          <% } else if (error !=null) { %>
+            <div
+              style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center; border: 1px solid #f5c6cb;">
+              Something went wrong. <%= "db_error" .equals(error) ? "Database error." : "Please check your details." %>
+            </div>
+            <% } %>
 
-            <form class="booking-form" action="<%= request.getContextPath() %>/book" method="POST">
-              <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required />
-              </div>
+              <form class="booking-form" action="<%= request.getContextPath() %>/book" method="POST">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+                </div>
 
-              <div class="form-group">
-                <label for="room-type">Room Type</label>
-                <select id="room-type" name="room_type">
-                  <option value="Standard">Standard</option>
-                  <option value="Deluxe">Deluxe</option>
-                  <option value="Family Suite">Family Suite</option>
-                </select>
-              </div>
+                <div class="form-group">
+                  <label for="room-type">Room Type</label>
+                  <select id="room-type" name="room_type">
+                    <option value="Standard">Standard</option>
+                    <option value="Deluxe">Deluxe</option>
+                    <option value="Family Suite">Family Suite</option>
+                  </select>
+                </div>
 
-              <div class="form-group">
-                <label for="check-in">Check-in Date</label>
-                <input type="date" id="check-in" name="check_in" required />
-              </div>
+                <div class="form-group">
+                  <label for="check-in">Check-in Date</label>
+                  <input type="date" id="check-in" name="check_in" required />
+                </div>
 
-              <div class="form-group">
-                <label for="check-out">Check-out Date</label>
-                <input type="date" id="check-out" name="check_out" required />
-              </div>
+                <div class="form-group">
+                  <label for="check-out">Check-out Date</label>
+                  <input type="date" id="check-out" name="check_out" required />
+                </div>
 
-              <button type="submit" class="btn-booking">Confirm Booking</button>
-            </form>
-    </div>
+                <button type="submit" class="btn-booking">Confirm Booking</button>
+              </form>
+      </div>
 
-    <jsp:include page="footer.jsp" />
-    <script src="js/validation.js"></script>
-  </body>
+      <jsp:include page="footer.jsp" />
+      <script src="js/validation.js"></script>
+    </body>
 
-  </html>
+    </html>
