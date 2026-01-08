@@ -83,7 +83,7 @@
             <li>Spa and Wellness</li>
             <li>Beachfront Dining</li>
           </ul>
-          <a href="<%= request.getContextPath() %>/rooms.jsp#standard" class="btn-secondary">Room Information</a>
+          <a href="<%= request.getContextPath() %>/rooms#standard" class="btn-secondary">Room Information</a>
         </div>
       </div>
 
@@ -107,7 +107,7 @@
             <li><strong>Night Diving</strong></li>
             <li><strong>Scuba Diving</strong></li>
           </ul>
-          <a href="<%= request.getContextPath() %>/rooms.jsp#deluxe" class="btn-secondary">Room Information</a>
+          <a href="<%= request.getContextPath() %>/rooms#deluxe" class="btn-secondary">Room Information</a>
         </div>
       </div>
 
@@ -131,7 +131,7 @@
             <li><strong>ATV Tours</strong></li>
             <li><strong>Sunset Cruise</strong></li>
           </ul>
-          <a href="<%= request.getContextPath() %>/rooms.jsp#family" class="btn-secondary">Room Information</a>
+          <a href="<%= request.getContextPath() %>/rooms#family" class="btn-secondary">Room Information</a>
         </div>
       </div>
     </div>

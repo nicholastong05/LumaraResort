@@ -1,30 +1,26 @@
-<%
-    String username = (String) session.getAttribute("username");
-    String role = (String) session.getAttribute("role");
-%>
+<% String username=(String) session.getAttribute("username"); String role=(String) session.getAttribute("role"); %>
 
-<header class="navbar">
-    <div class="logo">Lumara Resort</div>
+    <header class="navbar">
+        <div class="logo">Lumara Resort</div>
 
-    <nav>
-        <a href="<%= request.getContextPath() %>/index.jsp">Home</a>
-        <a href="<%= request.getContextPath() %>/rooms.jsp">Rooms</a>
-        <a href="<%= request.getContextPath() %>/activities.jsp">Activities</a>
-        <a href="<%= request.getContextPath() %>/booking.jsp">Book Now</a>
+        <nav>
+            <a href="<%= request.getContextPath() %>/index.jsp">Home</a>
+            <a href="<%= request.getContextPath() %>/rooms">Rooms</a>
+            <a href="<%= request.getContextPath() %>/activities.jsp">Activities</a>
+            <a href="<%= request.getContextPath() %>/booking.jsp">Book Now</a>
 
-        <%-- ADMIN NAVIGATION --%>
-        <% if ("admin".equals(role)) { %>
-            <a href="<%= request.getContextPath() %>/admin.jsp"
-               style="font-weight:600;">
-                Admin Dashboard
-            </a>
-        <% } %>
+            <%-- ADMIN NAVIGATION --%>
+                <% if ("admin".equals(role)) { %>
+                    <a href="<%= request.getContextPath() %>/admin.jsp" style="font-weight:600;">
+                        Admin Dashboard
+                    </a>
+                    <% } %>
 
-        <% if (username == null) { %>
-            <a href="<%= request.getContextPath() %>/login.jsp">Log in</a>
-        <% } else { %>
-            <span>Welcome, <%= username %></span>
-            <a href="<%= request.getContextPath() %>/logout">Logout</a>
-        <% } %>
-    </nav>
-</header>
+                        <% if (username==null) { %>
+                            <a href="<%= request.getContextPath() %>/login.jsp">Log in</a>
+                            <% } else { %>
+                                <span>Welcome, <%= username %></span>
+                                <a href="<%= request.getContextPath() %>/logout">Logout</a>
+                                <% } %>
+        </nav>
+    </header>

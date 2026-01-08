@@ -131,18 +131,28 @@
                     </tbody>
                 </table>
 
-                <div id="roomFormSection">
-                    <h3 id="formTitle">Add New Room Type</h3>
+                <div id="roomFormSection" style="display:none;">
+                    <h3 id="formTitle">Edit Room Type</h3>
                     <form action="${pageContext.request.contextPath}/admin/rooms" method="POST" class="add-room-form">
                         <input type="hidden" name="id" id="roomId">
-                        <input type="text" name="room_type" id="roomType" placeholder="Room Type (e.g. Deluxe)"
-                            required>
-                        <input type="number" name="price" id="roomPrice" step="0.01" placeholder="Price per night"
-                            required>
-                        <input type="number" name="capacity" id="roomCapacity" placeholder="Daily Capacity" required>
-                        <button type="submit" class="submit-btn" id="submitBtn">Add Room</button>
-                        <button type="button" class="action-btn" onclick="resetForm()" id="cancelBtn"
-                            style="display:none; background:#95a5a6; color:white;">Cancel</button>
+                        <!-- Use readonly for room type to focus on price/capacity updates -->
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="font-size: 12px; color: #666;">Room Type</label>
+                            <input type="text" name="room_type" id="roomType" placeholder="Room Type" readonly>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="font-size: 12px; color: #666;">Price per Night (MYR)</label>
+                            <input type="number" name="price" id="roomPrice" step="0.01" placeholder="Price" required>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="font-size: 12px; color: #666;">Daily Capacity</label>
+                            <input type="number" name="capacity" id="roomCapacity" placeholder="Capacity" required>
+                        </div>
+                        <div style="display: flex; align-items: flex-end; gap: 10px;">
+                            <button type="submit" class="submit-btn" id="submitBtn">Update Room</button>
+                            <button type="button" class="action-btn" onclick="resetForm()" id="cancelBtn"
+                                style="background:#95a5a6; color:white;">Cancel</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -153,9 +163,9 @@
                     document.getElementById('roomType').value = type;
                     document.getElementById('roomPrice').value = price;
                     document.getElementById('roomCapacity').value = capacity;
-                    document.getElementById('formTitle').innerText = 'Edit Room Type';
+                    document.getElementById('roomFormSection').style.display = 'block';
                     document.getElementById('submitBtn').innerText = 'Update Room';
-                    document.getElementById('cancelBtn').style.display = 'inline-block';
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
                 }
 
                 function resetForm() {
@@ -163,9 +173,7 @@
                     document.getElementById('roomType').value = '';
                     document.getElementById('roomPrice').value = '';
                     document.getElementById('roomCapacity').value = '';
-                    document.getElementById('formTitle').innerText = 'Add New Room Type';
-                    document.getElementById('submitBtn').innerText = 'Add Room';
-                    document.getElementById('cancelBtn').style.display = 'none';
+                    document.getElementById('roomFormSection').style.display = 'none';
                 }
             </script>
 

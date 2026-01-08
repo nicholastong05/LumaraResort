@@ -77,7 +77,8 @@
                     <div class="room-footer">
                         <div class="price-tag">
                             <span class="currency">RM</span>
-                            <span class="amount">350</span>
+                            <span class="amount">${roomPrices['standard'] != null ? roomPrices['standard'] :
+                                '350'}</span>
                             <span class="duration">/ night</span>
                         </div>
                         <a href="<%= request.getContextPath() %>/booking.jsp?room=standard" class="btn-primary">Book
@@ -141,7 +142,7 @@
                     <div class="room-footer">
                         <div class="price-tag">
                             <span class="currency">RM</span>
-                            <span class="amount">550</span>
+                            <span class="amount">${roomPrices['deluxe'] != null ? roomPrices['deluxe'] : '550'}</span>
                             <span class="duration">/ night</span>
                         </div>
                         <a href="<%= request.getContextPath() %>/booking.jsp?room=deluxe" class="btn-primary">Book This
@@ -206,7 +207,8 @@
                     <div class="room-footer">
                         <div class="price-tag">
                             <span class="currency">RM</span>
-                            <span class="amount">750</span>
+                            <span class="amount">${roomPrices['family suite'] != null ? roomPrices['family suite'] :
+                                '750'}</span>
                             <span class="duration">/ night</span>
                         </div>
                         <a href="<%= request.getContextPath() %>/booking.jsp?room=family" class="btn-primary">Book This
@@ -233,9 +235,9 @@
                     <tbody>
                         <tr>
                             <td>Price per Night</td>
-                            <td>RM 350</td>
-                            <td>RM 550</td>
-                            <td>RM 750</td>
+                            <td>RM ${roomPrices['standard'] != null ? roomPrices['standard'] : '350'}</td>
+                            <td>RM ${roomPrices['deluxe'] != null ? roomPrices['deluxe'] : '550'}</td>
+                            <td>RM ${roomPrices['family suite'] != null ? roomPrices['family suite'] : '750'}</td>
                         </tr>
                         <tr>
                             <td>Max Occupancy</td>
