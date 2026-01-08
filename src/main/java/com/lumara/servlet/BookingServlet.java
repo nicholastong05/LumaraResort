@@ -50,22 +50,40 @@ public class BookingServlet extends HttpServlet {
                 return;
             }
 
-            // Simple pricing logic (Phase 1)
-            double pricePerNight;
-            switch (roomType) {
-                case "Deluxe":
-                    pricePerNight = 550;
-                    break;
-                case "Family Suite":
-                    pricePerNight = 750;
-                    break;
-                default:
-                    pricePerNight = 350;
-            }
-
-            double totalAmount = nights * pricePerNight;
-
             try (Connection conn = com.lumara.util.DBConnection.getConnection()) {
+                // 1. Fetch price and capacity
+                double pricePerNight = 0;
+                int dailyCapacity = 0;
+                String roomQuery = "SELECT price, capacity FROM rooms WHERE room_type = ?";
+                try (PreparedStatement rsStmt = conn.prepareStatement(roomQuery)) {
+                    rsStmt.setString(1, roomType);
+                    try (ResultSet rs = rsStmt.executeQuery()) {
+                        if (rs.next()) {
+                            pricePerNight = rs.getDouble("price");
+                            dailyCapacity = rs.getInt("capacity");
+                        } else {
+                            response.sendRedirect("booking.jsp?error=invalid_room_type");
+                            return;
+                        }
+                    }
+                }
+
+                // 2. Check Availability
+                String availabilityQuery = "SELECT COUNT(*) FROM bookings " +
+                        "WHERE room_type = ? AND (check_in < ? AND check_out > ?)";
+                try (PreparedStatement avStmt = conn.prepareStatement(availabilityQuery)) {
+                    avStmt.setString(1, roomType);
+                    avStmt.setDate(2, Date.valueOf(checkOutStr)); // check_in < requested_check_out
+                    avStmt.setDate(3, Date.valueOf(checkInStr)); // check_out > requested_check_in
+                    try (ResultSet rs = avStmt.executeQuery()) {
+                        if (rs.next() && rs.getInt(1) >= dailyCapacity) {
+                            response.sendRedirect("booking.jsp?error=room_full");
+                            return;
+                        }
+                    }
+                }
+
+                double totalAmount = nights * pricePerNight;
 
                 String sql = "INSERT INTO bookings (name, room_type, check_in, check_out) VALUES (?, ?, ?, ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {

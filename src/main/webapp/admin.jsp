@@ -1,153 +1,149 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%
-    String role = (String) session.getAttribute("role");
-    if (!"admin".equals(role)) {
-        response.sendRedirect("login.jsp");
-        return;
-    }
-%>
+    <% String role=(String) session.getAttribute("role"); if (!"admin".equals(role)) {
+        response.sendRedirect("login.jsp"); return; } %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Admin Dashboard – Lumara Resort</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
-    <style> 
-      /* RESET BUTTON DEFAULT STYLES */
-button.admin-card {
-    all: unset;                /* removes ALL default button styles */
-    box-sizing: border-box;
-}
-/* ===== ADMIN DASHBOARD BUTTONS (GREY + OVAL) ===== */
+        <!DOCTYPE html>
+        <html lang="en">
 
-.admin-cards {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    margin-top: 40px;
-}
+        <head>
+            <meta charset="UTF-8" />
+            <title>Admin Dashboard – Lumara Resort</title>
+            <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
+            <style>
+                /* RESET BUTTON DEFAULT STYLES */
+                button.admin-card {
+                    all: unset;
+                    /* removes ALL default button styles */
+                    box-sizing: border-box;
+                }
 
-button.admin-card {
-    all: unset;
-    box-sizing: border-box;
+                /* ===== ADMIN DASHBOARD BUTTONS (GREY + OVAL) ===== */
 
-    width: 240px;
-    padding: 30px 26px;
+                .admin-cards {
+                    display: flex;
+                    justify-content: center;
+                    gap: 32px;
+                    margin-top: 40px;
+                }
 
-    /* MORE OVAL */
-    border-radius: 40px;
+                button.admin-card {
+                    all: unset;
+                    box-sizing: border-box;
 
-    /* GREYER LOOK */
-    background: linear-gradient(
-        135deg,
-        #f2f4f7 0%,
-        #e6e9ee 100%
-    );
+                    width: 240px;
+                    padding: 30px 26px;
 
-    border: 1px solid rgba(0, 0, 0, 0.1);
+                    /* MORE OVAL */
+                    border-radius: 40px;
 
-    text-align: center;
-    cursor: pointer;
+                    /* GREYER LOOK */
+                    background: linear-gradient(135deg,
+                            #f2f4f7 0%,
+                            #e6e9ee 100%);
 
-    box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.08);
+                    border: 1px solid rgba(0, 0, 0, 0.1);
 
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease;
-}
+                    text-align: center;
+                    cursor: pointer;
 
-button.admin-card h3 {
-    margin: 0 0 10px;
-    font-size: 18px;
-    font-weight: 700;
-    color: #0a3d62;
-}
+                    box-shadow:
+                        0 8px 18px rgba(0, 0, 0, 0.08);
 
-button.admin-card p {
-    margin: 0;
-    font-size: 14px;
-    color: #444;
-    line-height: 1.5;
-}
+                    transition:
+                        transform 0.3s ease,
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+                }
 
-/* Hover = subtle premium lift */
-button.admin-card:hover {
-    transform: translateY(-8px);
+                button.admin-card h3 {
+                    margin: 0 0 10px;
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #0a3d62;
+                }
 
-    background: linear-gradient(
-        135deg,
-        #e9edf3 0%,
-        #dde2ea 100%
-    );
+                button.admin-card p {
+                    margin: 0;
+                    font-size: 14px;
+                    color: #444;
+                    line-height: 1.5;
+                }
 
-    box-shadow:
-        0 16px 32px rgba(0, 0, 0, 0.18);
-}
+                /* Hover = subtle premium lift */
+                button.admin-card:hover {
+                    transform: translateY(-8px);
 
-/* Click feedback */
-button.admin-card:active {
-    transform: translateY(-4px);
-    box-shadow:
-        0 10px 20px rgba(0, 0, 0, 0.15);
-}
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+                    background: linear-gradient(135deg,
+                            #e9edf3 0%,
+                            #dde2ea 100%);
 
-.modal-content {
-    background: white;
-    padding: 25px;
-    width: 400px;
-    border-radius: 12px;
-}
+                    box-shadow:
+                        0 16px 32px rgba(0, 0, 0, 0.18);
+                }
 
-.close-btn {
-    float: right;
-    cursor: pointer;
-    font-size: 20px;
-}
+                /* Click feedback */
+                button.admin-card:active {
+                    transform: translateY(-4px);
+                    box-shadow:
+                        0 10px 20px rgba(0, 0, 0, 0.15);
+                }
 
-    </style>
-</head>
+                .modal {
+                    position: fixed;
+                    inset: 0;
+                    background: rgba(0, 0, 0, 0.4);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
 
-<body>
+                .modal-content {
+                    background: white;
+                    padding: 25px;
+                    width: 400px;
+                    border-radius: 12px;
+                }
 
-<jsp:include page="navbar.jsp" />
+                .close-btn {
+                    float: right;
+                    cursor: pointer;
+                    font-size: 20px;
+                }
+            </style>
+        </head>
 
-<section class="admin-container">
-    <h2>Admin Dashboard</h2>
+        <body>
 
-    <div class="admin-cards">
+            <jsp:include page="navbar.jsp" />
 
-        <button class="admin-card">
-            <h3>Manage Rooms</h3>
-            <p>Add, update, or remove rooms</p>
-        </button>
+            <section class="admin-container">
+                <h2>Admin Dashboard</h2>
 
-        <button
-            class="admin-card"
-            onclick="window.location.href='<%= request.getContextPath() %>/admin/bookings'">
-            <h3>View Bookings</h3>
-            <p>Check customer bookings</p>
-        </button>
+                <div class="admin-cards">
 
-        <button class="admin-card">
-            <h3>Update Prices</h3>
-            <p>Modify room prices</p>
-        </button>
+                    <button class="admin-card"
+                        onclick="window.location.href='<%= request.getContextPath() %>/admin/rooms'">
+                        <h3>Manage Rooms</h3>
+                        <p>Add, update, or remove rooms</p>
+                    </button>
 
-    </div>
-</section>
+                    <button class="admin-card"
+                        onclick="window.location.href='<%= request.getContextPath() %>/admin/bookings'">
+                        <h3>View Bookings</h3>
+                        <p>Check customer bookings</p>
+                    </button>
 
-<jsp:include page="footer.jsp" />
+                    <button class="admin-card"
+                        onclick="window.location.href='<%= request.getContextPath() %>/admin/users'">
+                        <h3>Manage Users</h3>
+                        <p>View and manage accounts</p>
+                    </button>
 
-</body>
-</html>
+                </div>
+            </section>
+
+            <jsp:include page="footer.jsp" />
+
+        </body>
+
+        </html>
