@@ -8,9 +8,9 @@
     <title>Admin - Bookings</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css">
     
-    <style> /* ================================
+    <style> /*
    ADMIN BOOKINGS TABLE
-   ================================ */
+  */
 
 .admin-table {
     width: 90%;
@@ -48,9 +48,9 @@
 }
 
 
-/* ================================
+/* 
    ACTION BUTTONS
-   ================================ */
+    */
 
 .action-buttons {
     display: flex;
@@ -88,9 +88,9 @@
     background: #dc2626;
     color: white;
 }
-/* ================================
+/* 
    EDIT MODAL
-   ================================ */
+   */
 
 .modal {
     display: none;
@@ -156,7 +156,7 @@
     cursor: pointer;
 }
 
-/* ===== ADMIN BOOKINGS ===== */
+/* ADMIN BOOKINGS */
 
 .admin-title {
     text-align: center;
@@ -246,10 +246,12 @@
 
             <label>Room Type</label>
             <select name="roomType" id="edit-room" required>
-                <option value="Standard">Standard</option>
-                <option value="Deluxe">Deluxe</option>
-                <option value="Family Suite">Family Suite</option>
+                <c:forEach var="rt" items="${roomTypes}">
+                    <option value="${rt}">${rt}</option>
+                </c:forEach>
             </select>
+
+
 
             <label>Check In</label>
             <input type="date" name="checkIn" id="edit-checkin" required>

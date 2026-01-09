@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
 
 @WebServlet("/admin/bookings")
 public class AdminViewBookingsServlet extends HttpServlet {
@@ -19,18 +22,19 @@ public class AdminViewBookingsServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
-        String role = (session != null) ? (String) session.getAttribute("role") : null;
-
-        if (!"admin".equals(role)) {
+        if (session == null || !"admin".equals(session.getAttribute("role"))) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
 
         List<Booking> bookings = new ArrayList<>();
+        List<String> roomTypes = new ArrayList<>();
 
         try (Connection conn = DBConnection.getConnection()) {
-            String sql = "SELECT * FROM bookings ORDER BY created_at DESC";
-            PreparedStatement ps = conn.prepareStatement(sql);
+
+            //  BOOKINGS
+            String bookingSql = "SELECT * FROM bookings ORDER BY created_at DESC";
+            PreparedStatement ps = conn.prepareStatement(bookingSql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -41,17 +45,28 @@ public class AdminViewBookingsServlet extends HttpServlet {
                 b.setCheckIn(rs.getDate("check_in"));
                 b.setCheckOut(rs.getDate("check_out"));
                 b.setCreatedAt(rs.getTimestamp("created_at"));
-
                 bookings.add(b);
+            }
+
+            // 2ROOM TYPES
+            String roomSql = "SELECT room_type FROM rooms ORDER BY room_type ASC";
+            PreparedStatement psRoom = conn.prepareStatement(roomSql);
+            ResultSet rsRoom = psRoom.executeQuery();
+
+            while (rsRoom.next()) {
+                roomTypes.add(rsRoom.getString("room_type"));
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        // THESE TWO LINES MUST EXIST
         request.setAttribute("bookingList", bookings);
-        request.getRequestDispatcher("/admin/manage_bookings.jsp")
-       .forward(request, response);
+        request.setAttribute("roomTypes", roomTypes);
 
+        request.getRequestDispatcher("/admin/manage_bookings.jsp")
+               .forward(request, response);
     }
 }
+
