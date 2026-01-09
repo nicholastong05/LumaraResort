@@ -65,7 +65,7 @@
     <div class="room-contents">
       <div id="standard" class="room-content">
         <div class="room-image">
-          <img src="<%= request.getContextPath() %>/images/room1.jpg" alt="Standard Room" />
+          <img src="<%= request.getContextPath() %>/images/standard_room.png" alt="Standard Room" />
         </div>
         <div class="room-details">
           <h3>Standard Room</h3>
@@ -89,7 +89,7 @@
 
       <div id="deluxe" class="room-content">
         <div class="room-image">
-          <img src="<%= request.getContextPath() %>/images/room2.jpg" alt="Deluxe Room" />
+          <img src="<%= request.getContextPath() %>/images/deluxe_room.png" alt="Deluxe Room" />
         </div>
         <div class="room-details">
           <h3>Deluxe Room</h3>
@@ -113,7 +113,7 @@
 
       <div id="family" class="room-content">
         <div class="room-image">
-          <img src="<%= request.getContextPath() %>/images/room3.jpg" alt="Family Suite" />
+          <img src="<%= request.getContextPath() %>/images/family_suite_empty.png" alt="Family Suite" />
         </div>
         <div class="room-details">
           <h3>Family Suite</h3>

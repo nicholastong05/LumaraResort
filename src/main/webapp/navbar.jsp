@@ -5,7 +5,7 @@
 
         <nav>
             <a href="<%= request.getContextPath() %>/index.jsp">Home</a>
-            <a href="<%= request.getContextPath() %>/rooms">Rooms</a>
+            <a href="<%= request.getContextPath() %>/rooms.jsp">Rooms</a>
             <a href="<%= request.getContextPath() %>/activities.jsp">Activities</a>
             <a href="<%= request.getContextPath() %>/booking.jsp">Book Now</a>
 
