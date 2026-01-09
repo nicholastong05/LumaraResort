@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
 
 
 @WebServlet("/admin/bookings")
@@ -48,7 +46,7 @@ public class AdminViewBookingsServlet extends HttpServlet {
                 bookings.add(b);
             }
 
-            // 2ROOM TYPES
+            // ROOM TYPES
             String roomSql = "SELECT room_type FROM rooms ORDER BY room_type ASC";
             PreparedStatement psRoom = conn.prepareStatement(roomSql);
             ResultSet rsRoom = psRoom.executeQuery();

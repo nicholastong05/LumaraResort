@@ -63,8 +63,22 @@ public class DatabaseInitializer implements ServletContextListener {
                             "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
                     stmt.execute(createBookingsSQL);
                     System.out.println("Bookings table checked/created.");
-                }
 
+                    // Create user_profiles table if not exists
+                   String createUserProfilesSQL ="CREATE TABLE IF NOT EXISTS user_profiles (" +
+                          "user_id INT PRIMARY KEY, " +
+                          "full_name VARCHAR(100), " +
+                          "email VARCHAR(100), " +
+                          "phone VARCHAR(20), " +
+                          "gender VARCHAR(10), " +
+                          "date_of_birth DATE, " +
+                          "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" +
+                          ")";
+                          stmt.execute(createUserProfilesSQL);
+                          System.out.println("User profiles table checked/created.");
+
+                }
+                 
                 // Insert default users if not exist
                 String insertUserSQL = "INSERT INTO users (username, password, role) " +
                         "VALUES (?, ?, ?) ON CONFLICT (username) DO NOTHING";

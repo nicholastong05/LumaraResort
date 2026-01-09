@@ -250,7 +250,7 @@
     </div>
 
     <c:if test="${b.checkOut.time lt now.time}">
-        <div class="past-label">Inactive booking</div>
+        <div class="past-label">Inactive booking </div>
     </c:if>
 </td>
 
