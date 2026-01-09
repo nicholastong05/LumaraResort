@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
                         int userId = rs.getInt("id");
                         String role = rs.getString("role");
 
-                        // 🔑 REQUIRED session data
+                        // REQUIRED session data
                         session.setAttribute("userId", userId);
                         session.setAttribute("username", username);
                         session.setAttribute("role", role);
