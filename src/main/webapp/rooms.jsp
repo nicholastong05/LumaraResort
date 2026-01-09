@@ -24,7 +24,8 @@
             <!-- Standard Room Section -->
             <div id="standard" class="room-detail-section">
                 <div class="room-detail-image">
-                    <img src="<%= request.getContextPath() %>/images/room1.jpg" alt="Standard Room at Lumara Resort" />
+                    <img src="<%= request.getContextPath() %>/images/standard_room.png"
+                        alt="Standard Room at Lumara Resort" />
                 </div>
                 <div class="room-detail-content">
                     <h2>Standard Room</h2>
@@ -90,7 +91,8 @@
             <!-- Deluxe Room Section (Reverse Layout) -->
             <div id="deluxe" class="room-detail-section reverse">
                 <div class="room-detail-image">
-                    <img src="<%= request.getContextPath() %>/images/room2.jpg" alt="Deluxe Room at Lumara Resort" />
+                    <img src="<%= request.getContextPath() %>/images/deluxe_room.png"
+                        alt="Deluxe Room at Lumara Resort" />
                 </div>
                 <div class="room-detail-content">
                     <h2>Deluxe Room</h2>
@@ -154,7 +156,8 @@
             <!-- Family Suite Section -->
             <div id="family" class="room-detail-section">
                 <div class="room-detail-image">
-                    <img src="<%= request.getContextPath() %>/images/room3.jpg" alt="Family Suite at Lumara Resort" />
+                    <img src="<%= request.getContextPath() %>/images/family_suite_empty.png"
+                        alt="Family Suite at Lumara Resort" />
                 </div>
                 <div class="room-detail-content">
                     <h2>Family Suite</h2>
