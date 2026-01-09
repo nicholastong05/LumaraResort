@@ -26,7 +26,12 @@
           <% } else if (error !=null) { %>
             <div
               style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center; border: 1px solid #f5c6cb;">
-              Something went wrong. <%= "db_error" .equals(error) ? "Database error." : "Please check your details." %>
+              <% if ("room_full".equals(error)) { out.print("Room full for the selected dates. Please try another date
+                or room type."); } else if ("invalid_dates".equals(error)) { out.print("Invalid dates selected.
+                Check-out must be after check-in."); } else if ("missing_fields".equals(error)) { out.print("Please fill
+                in all required fields."); } else if ("invalid_room_type".equals(error)) { out.print("Selected room type
+                is not available."); } else if ("db_error".equals(error)) { out.print("A database error occurred. Please
+                try again later."); } else { out.print("Something went wrong. Please check your details."); } %>
             </div>
             <% } %>
 
