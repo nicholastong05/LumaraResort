@@ -5,6 +5,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,10 +23,13 @@ public class BookingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (request.getSession().getAttribute("username") == null) {
+        HttpSession session = request.getSession(false);
+        Integer userId = (session != null) ? (Integer) session.getAttribute("userId") : null;
+        if (userId == null) {
             response.sendRedirect("login.jsp?error=login_required");
             return;
         }
+
 
         String name = request.getParameter("name");
         String roomType = request.getParameter("room_type");
@@ -85,13 +90,14 @@ public class BookingServlet extends HttpServlet {
 
                 double totalAmount = nights * pricePerNight;
 
-                String sql = "INSERT INTO bookings (name, room_type, check_in, check_out) VALUES (?, ?, ?, ?)";
+                String sql = "INSERT INTO bookings (user_id,name, room_type, check_in, check_out) VALUES (?,?, ?, ?, ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-                    pstmt.setString(1, name);
-                    pstmt.setString(2, roomType);
-                    pstmt.setDate(3, Date.valueOf(checkInStr));
-                    pstmt.setDate(4, Date.valueOf(checkOutStr));
+                    pstmt.setInt(1, userId);
+                    pstmt.setString(2, name);
+                    pstmt.setString(3, roomType);
+                    pstmt.setDate(4, Date.valueOf(checkInStr));
+                    pstmt.setDate(5, Date.valueOf(checkOutStr));
 
                     pstmt.executeUpdate();
 

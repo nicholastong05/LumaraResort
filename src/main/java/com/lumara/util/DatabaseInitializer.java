@@ -54,15 +54,31 @@ public class DatabaseInitializer implements ServletContextListener {
                     System.out.println("Users table checked/created.");
 
                     // Create bookings table if not exists
-                    String createBookingsSQL = "CREATE TABLE IF NOT EXISTS bookings (" +
-                            "id SERIAL PRIMARY KEY, " +
-                            "name VARCHAR(255) NOT NULL, " +
-                            "room_type VARCHAR(100) NOT NULL, " +
-                            "check_in DATE NOT NULL, " +
-                            "check_out DATE NOT NULL, " +
-                            "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
-                    stmt.execute(createBookingsSQL);
-                    System.out.println("Bookings table checked/created.");
+                    String createBookingsSQL =
+                    "CREATE TABLE IF NOT EXISTS bookings (" +
+                    "id SERIAL PRIMARY KEY, " +
+                    "user_id INT, " +
+                    "name VARCHAR(255) NOT NULL, " +
+                    "room_type VARCHAR(100) NOT NULL, " +
+                    "check_in DATE NOT NULL, " +
+                    "check_out DATE NOT NULL, " +
+                    "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
+                    "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL" +
+                     ")";
+                     stmt.execute(createBookingsSQL);
+                     System.out.println("Bookings table checked/created.");
+
+                    // altering the table
+                    stmt.execute(
+                        "ALTER TABLE bookings " +
+                        "ADD COLUMN IF NOT EXISTS user_id INT"
+                    );
+                    stmt.execute(
+                        "ALTER TABLE bookings " +
+                        "ADD CONSTRAINT IF NOT EXISTS bookings_user_fk " +
+                        "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL"
+                    );
+                    System.out.println("Bookings table upgraded with user_id if needed.");
 
                     // Create user_profiles table if not exists
                    String createUserProfilesSQL ="CREATE TABLE IF NOT EXISTS user_profiles (" +
@@ -99,6 +115,17 @@ public class DatabaseInitializer implements ServletContextListener {
                     pstmt.executeBatch();
                     System.out.println("Default users checked/inserted.");
                 }
+                String assignAdminToOldBookingsSQL =
+                "UPDATE bookings " +
+                "SET user_id = (SELECT id FROM users WHERE username = 'admin') " +
+                "WHERE user_id IS NULL";
+                try (PreparedStatement ps = conn.prepareStatement(assignAdminToOldBookingsSQL)) {
+                    int rows = ps.executeUpdate();
+                    if (rows > 0) {
+                         System.out.println("Assigned admin as owner for " + rows + " old bookings.");
+                        }
+                    }
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
