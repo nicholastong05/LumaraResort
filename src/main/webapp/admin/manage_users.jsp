@@ -158,6 +158,13 @@
                                     <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>Admin</option>
                                 </select>
                             </form>
+                            
+                            <c:if test="${user.role == 'user'}">
+                                <a href="${pageContext.request.contextPath}/admin/user/profile?id=${user.id}"
+                                class="action-btn role-btn"
+                                style="margin-left: 10px;">
+                                View Profile</a>
+                            </c:if>
 
                             <form action="${pageContext.request.contextPath}/admin/users" method="POST" style="display:inline; margin-left: 10px;">
                                 <input type="hidden" name="action" value="delete">

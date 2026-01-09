@@ -73,11 +73,7 @@ public class DatabaseInitializer implements ServletContextListener {
                         "ALTER TABLE bookings " +
                         "ADD COLUMN IF NOT EXISTS user_id INT"
                     );
-                    stmt.execute(
-                        "ALTER TABLE bookings " +
-                        "ADD CONSTRAINT IF NOT EXISTS bookings_user_fk " +
-                        "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL"
-                    );
+                    
                     System.out.println("Bookings table upgraded with user_id if needed.");
 
                     // Create user_profiles table if not exists
