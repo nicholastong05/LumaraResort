@@ -6,11 +6,13 @@
 <header class="navbar">
     <div class="logo">Lumara Resort</div>
 
-    <nav>
-        <a href="<%= request.getContextPath() %>/index.jsp">Home</a>
-        <a href="<%= request.getContextPath() %>/rooms.jsp">Rooms</a>
-        <a href="<%= request.getContextPath() %>/activities.jsp">Activities</a>
-        <a href="<%= request.getContextPath() %>/booking.jsp">Book Now</a>
+
+        <nav>
+            <a href="<%= request.getContextPath() %>/index.jsp">Home</a>
+            <a href="<%= request.getContextPath() %>/rooms.jsp">Rooms</a>
+            <a href="<%= request.getContextPath() %>/activities.jsp">Activities</a>
+            <a href="<%= request.getContextPath() %>/booking.jsp">Book Now</a>
+>>>>>>> 85fcf1475e30ddf66c27b8ff273dfef91b9bed32
 
         <%-- ADMIN NAVIGATION --%>
         <% if ("admin".equals(role)) { %>
