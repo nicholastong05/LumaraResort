@@ -164,6 +164,28 @@
     font-size: 28px;
     color: #0a3d62;
 }
+/* Past bookings styling */
+.past-booking {
+    background: #f2f2f2 !important;
+    color: #999;
+}
+
+.past-booking td {
+    color: #999;
+}
+
+.past-booking .btn-edit {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.past-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #888;
+}
+
 </style>
 </head>
 
@@ -172,7 +194,7 @@
 <jsp:include page="../navbar.jsp" />
 
 <h2 class="admin-title">All Bookings</h2>
-
+<jsp:useBean id="now" class="java.util.Date" />
 <table class="admin-table">
     <thead>
         <tr>
@@ -188,7 +210,8 @@
 
     <tbody>
     <c:forEach var="b" items="${bookingList}">
-        <tr>
+        <tr class="${b.checkOut.time lt now.time ? 'past-booking' : ''}">
+
             <td>${b.id}</td>
             <td>${b.name}</td>
             <td>${b.roomType}</td>
@@ -204,26 +227,33 @@
             <td>${b.createdAt}</td>
 
             <td>
-                <div class="action-buttons">
+    <div class="action-buttons">
 
-                    <button type="button"
-                            class="btn-edit edit-btn"
-                            data-id="${b.id}"
-                            data-name="${b.name}"
-                            data-room="${b.roomType}"
-                            data-checkin="<fmt:formatDate value='${b.checkIn}' pattern='yyyy-MM-dd'/>"
-                            data-checkout="<fmt:formatDate value='${b.checkOut}' pattern='yyyy-MM-dd'/>">
-                        Edit
-                    </button>
+        <c:if test="${b.checkOut.time ge now.time}">
+            <button type="button"
+                    class="btn-edit edit-btn"
+                    data-id="${b.id}"
+                    data-name="${b.name}"
+                    data-room="${b.roomType}"
+                    data-checkin="<fmt:formatDate value='${b.checkIn}' pattern='yyyy-MM-dd'/>"
+                    data-checkout="<fmt:formatDate value='${b.checkOut}' pattern='yyyy-MM-dd'/>">
+                Edit
+            </button>
 
-                    <a class="btn-delete"
-                       href="<%= request.getContextPath() %>/admin/bookings/delete?id=${b.id}"
-                       onclick="return confirm('Delete this booking?');">
-                        Delete
-                    </a>
+            <a class="btn-delete"
+               href="<%= request.getContextPath() %>/admin/bookings/delete?id=${b.id}"
+               onclick="return confirm('Delete this booking?');">
+                Delete
+            </a>
+        </c:if>
 
-                </div>
-            </td>
+    </div>
+
+    <c:if test="${b.checkOut.time lt now.time}">
+        <div class="past-label">Inactive booking</div>
+    </c:if>
+</td>
+
         </tr>
     </c:forEach>
     </tbody>
