@@ -1,10 +1,14 @@
 package com.lumara.servlet;
 
+import com.lumara.util.CardValidator;
+import com.lumara.util.DBConnection;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,17 +32,44 @@ public class PaymentServlet extends HttpServlet {
 
         if ("cancel".equals(action)) {
             cancelBooking(bookingId, response);
+            return;
         }
-        else if ("confirm".equals(action)) {
+
+        if ("confirm".equals(action)) {
+
+            // ---- CHECK IF USER USED NEW CARD ----
+            String cardNumber = request.getParameter("cardNumber");
+            String expiryDate = request.getParameter("expiryDate");
+            String cvv = request.getParameter("cvv");
+
+            if (cardNumber != null && !cardNumber.trim().isEmpty()) {
+
+                // ✅ CENTRALIZED VALIDATION
+                String validationError =
+                        CardValidator.validate(cardNumber, expiryDate, cvv);
+
+                if (validationError != null) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("paymentError", validationError);
+                    response.sendRedirect("payment.jsp");
+                    return;
+                }
+            }
+
             confirmPayment(response);
+            return;
         }
-        else {
-            response.sendRedirect("index.jsp");
-        }
+
+        response.sendRedirect("index.jsp");
     }
 
-    private void cancelBooking(int bookingId, HttpServletResponse response) throws IOException {
-        try (Connection conn = com.lumara.util.DBConnection.getConnection()) {
+    /* =========================
+       CANCEL BOOKING
+       ========================= */
+    private void cancelBooking(int bookingId, HttpServletResponse response)
+            throws IOException {
+
+        try (Connection conn = DBConnection.getConnection()) {
 
             String sql = "DELETE FROM bookings WHERE id = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -46,7 +77,6 @@ public class PaymentServlet extends HttpServlet {
                 pstmt.executeUpdate();
             }
 
-            // Redirect user after cancellation
             response.sendRedirect("booking.jsp?cancelled=true");
 
         } catch (Exception e) {
@@ -55,9 +85,13 @@ public class PaymentServlet extends HttpServlet {
         }
     }
 
-    private void confirmPayment(HttpServletResponse response) throws IOException {
-        // Phase 1: no real payment logic yet
+    /* =========================
+       CONFIRM PAYMENT
+       ========================= */
+    private void confirmPayment(HttpServletResponse response)
+            throws IOException {
+
+        // Phase 1: simulated payment success
         response.sendRedirect("payment_success.jsp");
     }
 }
-
