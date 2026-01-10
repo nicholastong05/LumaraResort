@@ -138,6 +138,14 @@
                         <h3>Manage Users</h3>
                         <p>View and manage accounts</p>
                     </button>
+                  <button class="admin-card"
+                  onclick="window.location.href='<%= request.getContextPath() %>/admin/analytics'">
+                  <h3>Analytics</h3>
+                  <p>Revenue & system stats</p>
+                </button>
+
+
+
 
                 </div>
             </section>
