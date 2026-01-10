@@ -34,6 +34,15 @@
             color: white;
         }
 
+        .account-menu a:not(.active):hover {
+            background: #eef3f7; /* light hover */
+            color: #333;
+        }
+
+        .account-menu a:hover {
+            background: #000000;
+        }
+
         .account-content {
             flex: 1;
             background: #f8fafc;

@@ -42,8 +42,13 @@
             color: white;
         }
 
+        .account-menu a:not(.active):hover {
+            background: #eef3f7; /* light hover */
+            color: #333;
+        }
+
         .account-menu a:hover {
-            background: #eef3f7;
+            background: #000000;
         }
 
         .logout-link {
