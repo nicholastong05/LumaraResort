@@ -55,8 +55,7 @@
 <html>
 <head>
     <title>Payment – Lumara Resort</title>
-    <link rel="stylesheet"
-          href="<%= request.getContextPath() %>/css/style_v2.css" />
+    <link rel="stylesheet" , href="<%= request.getContextPath() %>/css/style_v2.css" />
 </head>
 
 <body>
