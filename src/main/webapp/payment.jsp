@@ -42,11 +42,6 @@
                 <input type="radio" name="paymentMethod" value="card" checked />
                 <label>💳 Credit / Debit Card</label>
             </div>
-
-            <div class="payment-option">
-                <input type="radio" name="paymentMethod" value="paypal" />
-                <label>🅿️ PayPal</label>
-            </div>
         </div>
 
         <!-- Action Buttons -->
