@@ -2629,6 +2629,63 @@ body {
     }
 }
 
+.payment-actions {
+    display: flex;
+    justify-content: center;
+    gap: 36px; /* MORE distance between buttons */
+    margin-top: 40px;
+}
+
+/* Base button */
+.btn {
+    padding: 16px 40px; /* BIGGER buttons */
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover effect (grow + glow) */
+.btn:hover {
+    transform: scale(1.08);
+}
+
+/* Cancel button */
+.btn-cancel {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.btn-cancel:hover {
+    background-color: #d1d5db;
+    box-shadow: 0 0 18px rgba(107, 114, 128, 0.6);
+}
+
+/* Confirm button */
+.btn-confirm {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-confirm:hover {
+    background-color: #1e40af;
+    box-shadow: 0 0 22px rgba(37, 99, 235, 0.75);
+}
+
+
+
 
 
 

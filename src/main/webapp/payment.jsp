@@ -51,12 +51,12 @@
 
         <!-- Action Buttons -->
         <div class="payment-actions">
-            <button type="submit" name="action" value="confirm" class="btn-booking">
-                Confirm Payment
+            <button type="button" class="btn btn-cancel">
+                ✕ Cancel
             </button>
 
-            <button type="submit" name="action" value="cancel" class="btn-booking">
-                Cancel Payment
+            <button type="submit" class="btn btn-confirm">
+                ✓ Confirm
             </button>
         </div>
     </form>
