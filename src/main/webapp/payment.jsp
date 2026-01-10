@@ -36,17 +36,17 @@
 
         <!-- Payment Method Selection (UI only for now) -->
         <h3 class="payment-title">Payment Method</h3>
-
         <div class="saved-card-box">
-            <label class="saved-card-option">
-                <input type="radio" name="paymentChoice" value="saved" id="savedCardRadio" checked>
-                <div class="saved-card-info">
-                    <strong>Visa •••• 3456</strong>
-                    <span>Expires 08/27</span>
-                </div>
+            <label for="savedCardSelect" class="saved-card-label">
+                Saved Payment Method
             </label>
-        </div>
 
+            <select id="savedCardSelect" class="saved-card-select">
+                <option value="1">Visa •••• 3456 (08/27)</option>
+                <option value="2">MasterCard •••• 1122 (05/26)</option>
+                <option value="new">+ Add new card</option>
+            </select>
+        </div>
         <div class="divider">OR</div>
         <input type="radio" name="paymentChoice" value="new" id="newCardRadio" hidden>
         <div class="card-payment-box">

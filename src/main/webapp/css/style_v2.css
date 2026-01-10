@@ -2798,6 +2798,28 @@ body {
     font-weight: 600;
 }
 
+.saved-card-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.saved-card-select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.saved-card-select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
 
 
 
