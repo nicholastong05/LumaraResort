@@ -35,12 +35,37 @@
         <input type="hidden" name="bookingId" value="<%= request.getAttribute("bookingId") %>" />
 
         <!-- Payment Method Selection (UI only for now) -->
-        <div class="payment-methods">
-            <h2>Select Payment Method</h2>
+        <div class="card-payment-box">
+            <div class="card-header">
+                <h4>Add Card Details</h4>
+            </div>
 
-            <div class="payment-option">
-                <input type="radio" name="paymentMethod" value="card" checked />
-                <label>💳 Credit / Debit Card</label>
+            <p class="card-subtitle">
+                Enter your credit or debit card information.
+            </p>
+
+            <div class="card-form">
+                <label>
+                    Card Number
+                    <input type="text" placeholder="1234 5678 9012 3456">
+                </label>
+
+                <label>
+                    Cardholder Name
+                    <input type="text" placeholder="John Doe">
+                </label>
+
+                <div class="card-row">
+                    <label>
+                        Expiry Date
+                        <input type="text" placeholder="MM/YY">
+                    </label>
+
+                    <label>
+                        CVV
+                        <input type="text" placeholder="123">
+                    </label>
+                </div>
             </div>
         </div>
 

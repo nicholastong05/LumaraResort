@@ -2684,6 +2684,83 @@ body {
     box-shadow: 0 0 22px rgba(37, 99, 235, 0.75);
 }
 
+/*credit / debit card CSS */
+
+.payment-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Card container */
+.card-payment-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    max-width: 520px;
+}
+
+/* Header */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.card-header h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.card-icon {
+    font-size: 22px;
+}
+
+/* Subtitle */
+.card-subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+/* Form */
+.card-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 18px;
+    color: #111827;
+}
+
+.card-form input {
+    margin-top: 6px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-form input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
+/* Expiry + CVV row */
+.card-row {
+    display: flex;
+    gap: 16px;
+}
+
+.card-row label {
+    flex: 1;
+}
+
 
 
 
