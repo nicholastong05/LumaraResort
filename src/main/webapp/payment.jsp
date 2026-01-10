@@ -55,7 +55,41 @@
 <html>
 <head>
     <title>Payment – Lumara Resort</title>
-    <link rel="stylesheet" , href="<%= request.getContextPath() %>/css/style_v2.css" />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_v2.css" />
+
+    <style>
+        /* === SEGMENTED TOGGLE (FULL WIDTH) === */
+        .payment-toggle {
+            display: flex;
+            background: #f1f5f9;
+            padding: 8px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            /* Removed width: fit-content to allow it to span the container */
+            width: 100%; 
+            box-sizing: border-box;
+        }
+
+        .payment-toggle button {
+            /* This makes both buttons grow equally to fill the space */
+            flex: 1; 
+            padding: 10px 22px;
+            border-radius: 12px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600; /* Slightly bolder to match the UI in your screenshot */
+            color: #334155;
+            transition: all 0.2s ease; /* Smooth transition when switching */
+        }
+
+        .payment-toggle button.active {
+            background: white;
+            color: #2563eb;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* Slightly deeper shadow for depth */
+        }
+    </style>
 </head>
 
 <body>
@@ -68,17 +102,12 @@
 </header>
 
 <div class="booking-container">
-    <%
-        if (session.getAttribute("paymentError") != null) {
-    %>
+
+    <% if (session.getAttribute("paymentError") != null) { %>
         <div class="alert alert-error">
             <%= session.getAttribute("paymentError") %>
         </div>
-    <%
-            session.removeAttribute("paymentError");
-        }
-    %>
-
+    <% session.removeAttribute("paymentError"); } %>
 
     <!-- BOOKING SUMMARY -->
     <div class="booking-summary">
@@ -88,8 +117,7 @@
         <p><strong>Check-in:</strong> <%= request.getAttribute("checkIn") %></p>
         <p><strong>Check-out:</strong> <%= request.getAttribute("checkOut") %></p>
         <p><strong>Total Nights:</strong> <%= request.getAttribute("nights") %></p>
-        <p><strong>Total Amount:</strong>
-            RM <%= request.getAttribute("totalAmount") %></p>
+        <p><strong>Total Amount:</strong> RM <%= request.getAttribute("totalAmount") %></p>
     </div>
 
     <!-- PAYMENT FORM -->
@@ -97,20 +125,32 @@
           action="<%= request.getContextPath() %>/payment"
           class="payment-form">
 
-        <!-- Hidden booking ID -->
         <input type="hidden" name="bookingId"
                value="<%= request.getAttribute("bookingId") %>" />
 
         <h3 class="payment-title">Payment Method</h3>
 
-        <!-- SAVED CARDS -->
-        <div class="saved-card-box">
-            <label for="savedCardSelect" class="saved-card-label">
+        <!-- SEGMENTED SWITCH -->
+        <div class="payment-toggle">
+            <button type="button"
+                    id="btnSaved"
+                    class="active"
+                    onclick="switchMode('saved')">
                 Saved Payment Method
-            </label>
+            </button>
 
-            <select id="savedCardSelect" class="saved-card-select">
+            <button type="button"
+                    id="btnNew"
+                    onclick="switchMode('new')">
+                Use New Card
+            </button>
+        </div>
 
+        <!-- SAVED CARDS -->
+        <div class="saved-card-box" id="savedCardSection">
+            <label class="saved-card-label">Saved Payment Method</label>
+
+            <select class="saved-card-select">
                 <%
                     java.util.List cards =
                         (java.util.List) request.getAttribute("savedCards");
@@ -129,15 +169,11 @@
                         }
                     }
                 %>
-
-                <option value="new">+ Add new card</option>
             </select>
         </div>
 
-        <div class="divider">OR</div>
-
         <!-- NEW CARD -->
-        <div class="card-payment-box">
+        <div class="card-payment-box" id="newCardSection" style="display:none;">
             <div class="card-header">
                 <h4>Add Card Details</h4>
             </div>
@@ -149,31 +185,23 @@
             <div class="card-form">
                 <label>
                     Card Number
-                    <input type="text"
-                           name="cardNumber"
-                           placeholder="1234 5678 9012 3456">
+                    <input type="text" name="cardNumber">
                 </label>
 
                 <label>
                     Cardholder Name
-                    <input type="text"
-                           name="cardholderName"
-                           placeholder="John Doe">
+                    <input type="text" name="cardholderName">
                 </label>
 
                 <div class="card-row">
                     <label>
                         Expiry Date
-                        <input type="text"
-                               name="expiryDate"
-                               placeholder="MM/YY">
+                        <input type="text" name="expiryDate" placeholder="MM/YY">
                     </label>
 
                     <label>
                         CVV
-                        <input type="text"
-                               name="cvv"
-                               placeholder="123">
+                        <input type="text" name="cvv">
                     </label>
                 </div>
             </div>
@@ -200,6 +228,27 @@
 </div>
 
 <jsp:include page="footer.jsp" />
+
+<script>
+function switchMode(mode) {
+    const savedBtn = document.getElementById("btnSaved");
+    const newBtn = document.getElementById("btnNew");
+    const savedSection = document.getElementById("savedCardSection");
+    const newSection = document.getElementById("newCardSection");
+
+    if (mode === "saved") {
+        savedBtn.classList.add("active");
+        newBtn.classList.remove("active");
+        savedSection.style.display = "block";
+        newSection.style.display = "none";
+    } else {
+        newBtn.classList.add("active");
+        savedBtn.classList.remove("active");
+        savedSection.style.display = "none";
+        newSection.style.display = "block";
+    }
+}
+</script>
 
 </body>
 </html>
