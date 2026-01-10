@@ -39,7 +39,7 @@
 
         <div class="saved-card-box">
             <label class="saved-card-option">
-                <input type="radio" name="paymentChoice" value="saved" checked>
+                <input type="radio" name="paymentChoice" value="saved" id="savedCardRadio" checked>
                 <div class="saved-card-info">
                     <strong>Visa •••• 3456</strong>
                     <span>Expires 08/27</span>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="divider">OR</div>
-
+        <input type="radio" name="paymentChoice" value="new" id="newCardRadio" hidden>
         <div class="card-payment-box">
             <div class="card-header">
                 <h4>Add Card Details</h4>
@@ -100,5 +100,16 @@
 
 <jsp:include page="footer.jsp" />
 
-</body>
+</body><script>
+    const newCardRadio = document.getElementById("newCardRadio");
+    const savedCardRadio = document.getElementById("savedCardRadio");
+    const cardInputs = document.querySelectorAll(".card-form input");
+
+    cardInputs.forEach(input => {
+        input.addEventListener("focus", () => {
+            newCardRadio.checked = true;
+        });
+    });
+</script>
+
 </html>
