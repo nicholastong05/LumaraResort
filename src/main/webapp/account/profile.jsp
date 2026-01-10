@@ -185,7 +185,7 @@
                 Account Overview
             </a>
 
-            <a href="${pageContext.request.contextPath}/account/bookings">
+            <a href="${pageContext.request.contextPath}/account/userbooking">
                 My Bookings
             </a>
 
