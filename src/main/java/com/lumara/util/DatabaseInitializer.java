@@ -52,7 +52,9 @@ public class DatabaseInitializer implements ServletContextListener {
                             "role VARCHAR(20) NOT NULL)";
                     stmt.execute(createTableSQL);
                     System.out.println("Users table checked/created.");
-
+                    // Add created_at to users if not exists
+                    stmt.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
+                    System.out.println("Users table upgraded with created_at.");
                     // Create bookings table if not exists
                     String createBookingsSQL =
                     "CREATE TABLE IF NOT EXISTS bookings (" +
@@ -73,7 +75,7 @@ public class DatabaseInitializer implements ServletContextListener {
                         "ALTER TABLE bookings " +
                         "ADD COLUMN IF NOT EXISTS user_id INT"
                     );
-                    
+
                     System.out.println("Bookings table upgraded with user_id if needed.");
 
                     // Create user_profiles table if not exists
