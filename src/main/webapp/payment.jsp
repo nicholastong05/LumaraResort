@@ -86,17 +86,15 @@
 
         <!-- Action Buttons -->
         <div class="payment-actions">
-            <button type="button" class="btn btn-cancel">
+            <button type="submit" name="action" value="cancel" class="btn btn-cancel">
                 ✕ Cancel
             </button>
 
-            <button type="submit" class="btn btn-confirm">
+            <button type="submit" name="action" value="confirm" class="btn btn-confirm">
                 ✓ Confirm
             </button>
         </div>
-    </form>
 
-</div>
 
 <jsp:include page="footer.jsp" />
 
