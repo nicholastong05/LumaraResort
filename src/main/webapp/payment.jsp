@@ -69,6 +69,17 @@
 </header>
 
 <div class="booking-container">
+    <%
+        if (session.getAttribute("paymentError") != null) {
+    %>
+        <div class="alert alert-error">
+            <%= session.getAttribute("paymentError") %>
+        </div>
+    <%
+            session.removeAttribute("paymentError");
+        }
+    %>
+
 
     <!-- BOOKING SUMMARY -->
     <div class="booking-summary">

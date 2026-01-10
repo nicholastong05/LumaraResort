@@ -1,7 +1,7 @@
 package com.lumara.servlet.users;
 
 import com.lumara.util.DBConnection;
-
+import com.lumara.util.CardValidator;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -95,17 +95,23 @@ public class AccountCardsServlet extends HttpServlet {
     /* =========================
        ADD CARD
        ========================= */
+
     private void addCard(HttpServletRequest request, Integer userId, HttpSession session) {
 
         String cardNumber = request.getParameter("cardNumber");
         String cardholderName = request.getParameter("cardholderName");
-        String expiryDate = request.getParameter("expiryDate"); // MM/YY
+        String expiryDate = request.getParameter("expiryDate");
+        String cvv = request.getParameter("cvv");
 
-        if (cardNumber == null || cardNumber.length() < 4 || expiryDate == null) {
-            session.setAttribute("cardError", "Invalid card details");
+        // ✅ CENTRALIZED VALIDATION
+        String validationError = CardValidator.validate(cardNumber, expiryDate, cvv);
+        if (validationError != null) {
+            session.setAttribute("cardError", validationError);
             return;
         }
 
+        // Safe to parse now
+        cardNumber = cardNumber.replaceAll("\\s+", "");
         String last4 = cardNumber.substring(cardNumber.length() - 4);
         String expiryMonth = expiryDate.substring(0, 2);
         String expiryYear = "20" + expiryDate.substring(3, 5);
@@ -134,6 +140,8 @@ public class AccountCardsServlet extends HttpServlet {
             session.setAttribute("cardError", "Failed to add card");
         }
     }
+
+
 
     /* =========================
        DELETE CARD
