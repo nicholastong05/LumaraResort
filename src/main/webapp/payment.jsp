@@ -35,6 +35,20 @@
         <input type="hidden" name="bookingId" value="<%= request.getAttribute("bookingId") %>" />
 
         <!-- Payment Method Selection (UI only for now) -->
+        <h3 class="payment-title">Payment Method</h3>
+
+        <div class="saved-card-box">
+            <label class="saved-card-option">
+                <input type="radio" name="paymentChoice" value="saved" checked>
+                <div class="saved-card-info">
+                    <strong>Visa •••• 3456</strong>
+                    <span>Expires 08/27</span>
+                </div>
+            </label>
+        </div>
+
+        <div class="divider">OR</div>
+
         <div class="card-payment-box">
             <div class="card-header">
                 <h4>Add Card Details</h4>
@@ -68,6 +82,7 @@
                 </div>
             </div>
         </div>
+
 
         <!-- Action Buttons -->
         <div class="payment-actions">
