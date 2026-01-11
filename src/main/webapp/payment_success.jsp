@@ -74,7 +74,7 @@
 
         <h2>Your booking is confirmed</h2>
 
-        <a href="<%= request.getContextPath() %>/account/userbooking.jsp"
+        <a href="<%= request.getContextPath() %>/account/userbooking"
         class="btn-bookings">
             Go to your bookings
         </a>
