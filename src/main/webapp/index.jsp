@@ -140,65 +140,56 @@
   <!-- Section 3: FAQ -->
   <section class="faq-section">
     <h2>Frequently Asked Questions</h2>
-    <p class="section-subtitle">Everything you need to know</p>
+    <p class="section-subtitle">Everything you need to know for your perfect stay</p>
 
     <div class="faq-container">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">
-          <h3>What are the check-in and check-out times?</h3>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>Check-in time is 2:00 PM and check-out time is 12:00 PM (noon). Early check-in and late check-out are
-            subject to availability and may incur additional charges. Please contact us in advance to arrange.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFAQ(this)">
-          <h3>What activities are included with my room?</h3>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>Activities vary by room type. Standard Rooms include snorkeling, island hopping, spa & wellness, and
-            beachfront dining. Deluxe Rooms add night diving and scuba diving. Family Suites include all Deluxe
-            activities plus jungle tracking, ATV tours, and sunset cruise. Check our Rooms section for full details.</p>
-        </div>
-      </div>
-
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFAQ(this)">
           <h3>How do I get to Lumara Resort?</h3>
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <p>We offer complimentary speedboat transfers from the mainland jetty. The scenic 45-minute journey departs
-            daily at 10:00 AM, 2:00 PM, and 6:00 PM. Please provide your arrival details at least 24 hours in advance so
-            we can arrange your transfer.</p>
+          <p>We offer complimentary speedboat transfers from the mainland jetty. The scenic 45-minute journey departs daily at 10:00 AM, 2:00 PM, and 6:00 PM. Please provide your arrival details at least 24 hours in advance so we can arrange your smooth transfer.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFAQ(this)">
-          <h3>What's included in the room rate?</h3>
+          <h3>What are the check-in and check-out times?</h3>
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <p>All rooms include free Wi-Fi, air conditioning, daily housekeeping, complimentary breakfast buffet, beach
-            towels, access to our infinity pool and private beach, and selected activities based on your room type.
-            Minibar items and premium dining are charged separately.</p>
+          <p>Check-in availability starts at 2:00 PM, and check-out is by 12:00 PM (noon). Early check-in or late check-out can often be arranged subject to availability; please contact our reception team in advance.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFAQ(this)">
-          <h3>Is the resort suitable for families with children?</h3>
+          <h3>What dining options are available?</h3>
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <p>Absolutely! Our Family Suites are designed for families with spacious accommodations sleeping up to 6
-            guests. We offer kid-friendly activities, a children's pool area, and our beachfront is perfect for safe
-            swimming. Children under 12 stay free when sharing with parents.</p>
+          <p>Indulge in a variety of culinary experiences! We feature a beachfront restaurant serving fresh local seafood and international cuisine, a casual poolside bar, and in-room dining services. A complimentary breakfast buffet is included with your stay.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h3>Is Wi-Fi available at the resort?</h3>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, complimentary high-speed Wi-Fi is available in all guest rooms and public areas, ensuring you can share your vacation moments or stay connected if needed.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h3>Is the resort family-friendly?</h3>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Absolutely! Our Family Suites are perfect for groups, and we offer dedicated children's activities, a kids' pool, and safe swimming areas. Children under 12 stay free when sharing existing bedding with parents.</p>
         </div>
       </div>
 
@@ -208,8 +199,7 @@
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <p>Free cancellation up to 7 days before check-in. Cancellations made within 7 days will be charged 50% of the
-            total booking. Cancellations within 48 hours or no-shows will be charged the full reservation amount.</p>
+          <p>We understand plans can change. Cancellations made up to 7 days before arrival are free of charge. Cancellations within 7 days incur a 50% fee, and changes within 48 hours or no-shows are charged the full reservation amount.</p>
         </div>
       </div>
     </div>
