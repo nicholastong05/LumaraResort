@@ -7,9 +7,13 @@ import java.sql.SQLException;
 public class DBConnection {
     // TODO: Connect to NeonDB
     // Replace the strings below with your dashboard connection details
-    private static final String URL = "jdbc:postgresql://ep-aged-dawn-a1oucbqp-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require";
-    private static final String USER = "neondb_owner";
-    private static final String PASSWORD = "npg_YTOHMpIxCi49";
+    // Environment variables for cloud deployment, fallback to local hardcoded
+    // values
+    private static final String URL = System.getenv("DB_URL") != null ? System.getenv("DB_URL")
+            : "jdbc:postgresql://ep-aged-dawn-a1oucbqp-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require";
+    private static final String USER = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "neondb_owner";
+    private static final String PASSWORD = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD")
+            : "npg_YTOHMpIxCi49";
 
     static {
         try {

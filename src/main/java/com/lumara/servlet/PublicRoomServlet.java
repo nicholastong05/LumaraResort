@@ -24,7 +24,23 @@ public class PublicRoomServlet extends HttpServlet {
                 ResultSet rs = stmt.executeQuery("SELECT room_type, price FROM rooms")) {
 
             while (rs.next()) {
-                roomPrices.put(rs.getString("room_type").toLowerCase(), rs.getDouble("price"));
+                String type = rs.getString("room_type");
+                double price = rs.getDouble("price");
+
+                // Store original and lowercase key
+                roomPrices.put(type, price);
+                roomPrices.put(type.toLowerCase(), price);
+
+                // Add robust mapping for specific UI keys
+                String lowerType = type.toLowerCase();
+                if (lowerType.contains("standard")) {
+                    roomPrices.put("standard", price);
+                } else if (lowerType.contains("deluxe")) {
+                    roomPrices.put("deluxe", price);
+                } else if (lowerType.contains("family")) {
+                    roomPrices.put("family suite", price);
+                    roomPrices.put("family", price);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
