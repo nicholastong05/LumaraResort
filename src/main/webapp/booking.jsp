@@ -36,9 +36,11 @@
                       Selected room type is not available.
                       <% } else if ("db_error".equals(error)) { %>
                         A database error occurred. Please try again later.
-                        <% } else { %>
-                          Something went wrong. Please check your details.
-                          <% } %>
+                        <% } else if ("invalid_card_cancelled".equals(error)) { %>
+    Booking Cancelled: Invalid card details provided.
+                          <% } else { %>
+                            Something went wrong. Please check your details.
+                            <% } %>
             </div>
             <% } %>
 

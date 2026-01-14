@@ -30,8 +30,10 @@ public class PaymentServlet extends HttpServlet {
 
         int bookingId = Integer.parseInt(bookingIdStr);
 
+        // 1. Handle Manual User Cancellation
         if ("cancel".equals(action)) {
-            cancelBooking(bookingId, response);
+            // Pass "manual" to indicate the user clicked the cancel button
+            cancelBooking(bookingId, response, "manual");
             return;
         }
 
@@ -42,6 +44,7 @@ public class PaymentServlet extends HttpServlet {
             String expiryDate = request.getParameter("expiryDate");
             String cvv = request.getParameter("cvv");
 
+            // If user entered data in the New Card fields
             if (cardNumber != null && !cardNumber.trim().isEmpty()) {
 
                 // ✅ CENTRALIZED VALIDATION
@@ -49,9 +52,12 @@ public class PaymentServlet extends HttpServlet {
                         CardValidator.validate(cardNumber, expiryDate, cvv);
 
                 if (validationError != null) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("paymentError", validationError);
-                    response.sendRedirect("payment.jsp");
+                    /* 2. LOGIC CHANGE: 
+                       Instead of sending them back to the payment page to try again,
+                       we strictly cancel the booking immediately.
+                       We pass "validation_fail" as the reason.
+                    */
+                    cancelBooking(bookingId, response, "validation_fail");
                     return;
                 }
             }
@@ -63,27 +69,38 @@ public class PaymentServlet extends HttpServlet {
         response.sendRedirect("index.jsp");
     }
 
+
     /* =========================
-       CANCEL BOOKING
+       CANCEL BOOKING (Modified)
        ========================= */
-    private void cancelBooking(int bookingId, HttpServletResponse response)
+    // Added 'String reason' to decide where to redirect after deleting
+    private void cancelBooking(int bookingId, HttpServletResponse response, String reason)
             throws IOException {
 
         try (Connection conn = DBConnection.getConnection()) {
 
+            // The DB logic remains exactly the same
             String sql = "DELETE FROM bookings WHERE id = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setInt(1, bookingId);
                 pstmt.executeUpdate();
             }
 
-            response.sendRedirect("booking.jsp?cancelled=true");
+            // Redirect based on the reason for cancellation
+            if ("validation_fail".equals(reason)) {
+                // Redirects with the specific error message you requested
+                response.sendRedirect("booking.jsp?error=invalid_card_cancelled");
+            } else {
+                // Default behavior for manual cancellation
+                response.sendRedirect("booking.jsp?cancelled=true");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("booking.jsp?error=cancel_failed");
         }
     }
+
 
     /* =========================
        CONFIRM PAYMENT
